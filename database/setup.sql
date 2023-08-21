@@ -19,6 +19,23 @@ CREATE TABLE customers (
     REFERENCES accounts(account_id)
 );
 
+CREATE TABLE fixers (
+  fixer_id INT GENERATED ALWAYS AS IDENTITY,
+  account_id INT,
+  bio VARCHAR(200),
+  experience VARCHAR(200),
+  jobs_done INT DEFAULT 0,
+  rating INT DEFAULT 0,
+  CONSTRAINT fk_account
+    FOREIGN KEY (account_id)
+    REFERENCES accounts(account_id)
+);
+
+-- CREATE TABLE items (
+--   item_id INT GENERATED ALWAYS AS IDENTITY,
+--   customer_id 
+-- )
+
 INSERT INTO accounts
   (email, user_name, user_password)
 VALUES
@@ -30,4 +47,9 @@ INSERT INTO customers
   (account_id, active_requests)
 VALUES
   (1, 2),
-  (2, 1)
+  (2, 1);
+
+INSERT INTO fixers
+  (account_id, bio, experience)
+VALUES
+  (3, 'Hello this is an example bio. My name is Nathan.', 'Hobbyist');
