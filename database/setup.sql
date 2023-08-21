@@ -10,7 +10,7 @@ CREATE TABLE accounts (
 
 CREATE TABLE customers (
   customer_id INT GENERATED ALWAYS AS IDENTITY,
-  account_id INT,
+  account_id INT NOT NULL,
   active_requests INT DEFAULT 0,
   items_for_sale INT DEFAULT 0,
   PRIMARY KEY (customer_id),
@@ -21,7 +21,7 @@ CREATE TABLE customers (
 
 CREATE TABLE fixers (
   fixer_id INT GENERATED ALWAYS AS IDENTITY,
-  account_id INT,
+  account_id INT NOT NULL,
   bio VARCHAR(200),
   experience VARCHAR(200),
   jobs_done INT DEFAULT 0,
@@ -34,7 +34,7 @@ CREATE TABLE fixers (
 
 CREATE TABLE items (
   item_id INT GENERATED ALWAYS AS IDENTITY,
-  seller_id INT,
+  seller_id INT NOT NULL,
   item_name VARCHAR(50) NOT NULL,
   item_description VARCHAR(200) NOT NULL,
   price MONEY DEFAULT 0,
@@ -47,7 +47,7 @@ CREATE TABLE items (
 
 CREATE TABLE jobs (
   job_id INT GENERATED ALWAYS AS IDENTITY,
-  customer_id INT,
+  customer_id INT NOT NULL,
   job_name VARCHAR(50) NOT NULL,
   job_description VARCHAR(200) NOT NULL,
   post_date DATE NOT NULL DEFAULT(CURRENT_DATE),
