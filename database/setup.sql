@@ -38,10 +38,24 @@ CREATE TABLE items (
   item_name VARCHAR(50) NOT NULL,
   item_description VARCHAR(200) NOT NULL,
   price MONEY DEFAULT 0,
-  available BOOLEAN DEFAULT true,
+  available BOOLEAN DEFAULT TRUE,
   PRIMARY KEY (item_id),
   CONSTRAINT fk_customer
     FOREIGN KEY (seller_id)
+    REFERENCES customers(customer_id)
+);
+
+CREATE TABLE jobs (
+  job_id INT GENERATED ALWAYS AS IDENTITY,
+  customer_id INT,
+  job_name VARCHAR(50) NOT NULL,
+  job_description VARCHAR(200) NOT NULL,
+  post_date DATE NOT NULL DEFAULT(CURRENT_DATE),
+  available BOOLEAN DEFAULT TRUE,
+  completed BOOLEAN DEFAULT FALSE,
+  PRIMARY KEY (job_id),
+  CONSTRAINT fk_customer
+    FOREIGN KEY (customer_id)
     REFERENCES customers(customer_id)
 );
 
@@ -67,3 +81,8 @@ INSERT INTO items
   (seller_id, item_name, item_description, price)
 VALUES
   (1, 'Toaster', 'A nice toaster, barely used', 10);
+
+INSERT INTO jobs
+  (customer_id, job_name, job_description)
+VALUES
+  (2, 'Microwave', 'My microwave no longer spins');
