@@ -1,3 +1,4 @@
+
 DROP TABLE IF EXISTS accounts, customers, fixers, items, jobs;
 
 CREATE TABLE accounts (
